@@ -1,8 +1,10 @@
-import { ajoutListenersAvis } from "./avis.js";
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis } from "./avis.js";
 
 // Récupération des pièces depuis le fichier JSON
 const reponse = await fetch('http://localhost:8081/pieces/');
 const pieces = await reponse.json();
+// on appel la fonction pour ajouter le listener au formulaire
+ajoutListenerEnvoyerAvis()
 
 function genererPieces(pieces){
 for (let i = 0; i < pieces.length; i++) {
@@ -103,7 +105,7 @@ console.log(noms)
 //Création de l'en-tête
 
 const pElement = document.createElement('p')
-pElement.innerText = "Pièces abordables";
+pElement.innerText = "Pièces abordables :";
 //Création de la liste
 const abordablesElements = document.createElement('ul');
 //Ajout de chaque nom à la liste
@@ -137,7 +139,7 @@ for(let i=0 ; i < nomsDisponibles.length ; i++){
 }
 
 const pElementDisponible = document.createElement('p')
-pElementDisponible.innerText = "Pièces disponibles:";
+pElementDisponible.innerText = "Pièces disponibles :";
 document.querySelector('.disponibles').appendChild(pElementDisponible).appendChild(disponiblesElement)
 
 const inputPrixMax = document.querySelector('#prix-max')
